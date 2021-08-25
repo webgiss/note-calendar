@@ -139,7 +139,7 @@ const createDays = (date, weeksBefore, weeksAfter) => {
         const isWe = day === 6;
         const isWe2 = day === 0;
         const isDate = dateValue === currentDateValue;
-        console.log({ dateValue, currentDateValue, isDate, date, month })
+        // console.log({ dateValue, currentDateValue, isDate, date, month })
         if (day === 1) {
             currentWeek = {
                 month: `${monthsByIndex[month]}\n${year}`,
