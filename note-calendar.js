@@ -200,7 +200,7 @@ const start = async () => {
 
     addStyle('@media print { @page { size: A4; } }')
 
-    const calendatInfo = createDays(new Date(), 3, 45);
+    const calendatInfo = createDays(new Date(), 3, 44);
     console.log(calendatInfo);
 
     createElement("div", {
