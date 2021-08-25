@@ -176,7 +176,7 @@ const start = async () => {
     let mainTable = null;
     addStyle('.day { width: 20px; height:20px; padding: 0; margin: 0; position: relative}');
     addStyle('.header { height:20px; }');
-    addStyle('.day, .month, .header { font-family: "Calibri","sans-serif"; text-align:center; vertical-align:middle; box-sizing: border-box; font-size: 0.7em;}');
+    addStyle('.day, .month, .header { font-family: "Calibri","sans-serif"; text-align:center; vertical-align:middle; box-sizing: border-box; font-size: 0.8em;}');
     addStyle('.month { width: 70px; white-space: pre; }');
     addStyle('.main-table { border: 2px solid #000; }');
     addStyle('.header { border-bottom: 2px solid #000; }');
