@@ -103,21 +103,39 @@ const monthsByIndex = {
 
 const weeksDay = ['L', 'M', 'M', 'J', 'V', 'S', 'D']
 
+/** 
+ * @typedef {{ date:number, nextDayMonth: boolean, nextWeekMonth: boolean, nextDayYear: boolean, nextWeekYear: boolean, isWe: boolean, isWe2: boolean, isDate: boolean }} DayInfo
+ */
+
+/** 
+ * @typedef {{month: string, days: DayInfo[], isFirstMonth: boolean, nextWeekMonth: boolean, nextWeekYear: boolean}} WeekInfo
+ */
+
+/** 
+ * @typedef {{lastMonth: string, monthSpans: {[month: string]: number}, weeks: WeekInfo[]}} CalendarInfo
+ */
+
 /**
  * Create a days structure based on a date and a number of weeks before and after
  * @param {Date} date 
  * @param {number} weeksBefore
  * @param {number} weeksAfter
+ * @returns {CalendarInfo}
  */
-const createDays = (date, weeksBefore, weeksAfter) => {
+const createCalendarInfo = (date, weeksBefore, weeksAfter) => {
     const msecByDay = 1000 * 60 * 60 * 24;
     const dateValue = Math.floor(date.getTime() / msecByDay) * msecByDay;
     const day = new Date(dateValue).getUTCDay();
     const start = dateValue + (-day + 1 - 7 * weeksBefore) * msecByDay;
     const stop = dateValue + (-day + 1 + 7 * (weeksAfter + 1)) * msecByDay;
 
+    /** @type {WeekInfo} */
     let currentWeek = null;
+
+    /** @type {WeekInfo} */
     let lastFirstWeekOfMonth = null;
+
+    /** @type {CalendarInfo} */
     const result = {
         lastMonth: '',
         monthSpans: {},
@@ -200,7 +218,7 @@ const start = async () => {
 
     addStyle('@media print { @page { size: A4; } }')
 
-    const calendatInfo = createDays(new Date(), 3, 44);
+    const calendatInfo = createCalendarInfo(new Date(), 3, 44);
     console.log(calendatInfo);
 
     createElement("div", {
