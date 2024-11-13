@@ -226,7 +226,7 @@ const start = async () => {
     addStyle('@media print { @page { size: A4; } }')
 
     const hashArgs = getHashArgs()
-    const date = new Date(hashArgs.date)
+    const date = hashArgs.date ? new Date(hashArgs.date) : new Date()
     const weekBefore = hashArgs.weekBefore ? parseInt(hashArgs.weekBefore) : 3
     const weekAfter = hashArgs.weekAfter ? parseInt(hashArgs.weekAfter) : 44
 
