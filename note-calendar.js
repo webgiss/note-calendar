@@ -186,6 +186,13 @@ const createCalendarInfo = (date, weeksBefore, weeksAfter) => {
     return result;
 }
 
+
+const getHashArgs = () => document.location.hash.split('#').slice(1).join('#').split('&').map(x=>{
+    const [key, ...values] = x.split('=')
+    const value = values.join('=')
+    return { [key]: value }
+}).reduce((prev, data) => ({ ...prev, ...data }))
+
 /**
  * Start the main code of the page
  * @returns {Promise<void>}
@@ -218,7 +225,12 @@ const start = async () => {
 
     addStyle('@media print { @page { size: A4; } }')
 
-    const calendatInfo = createCalendarInfo(new Date(), 3, 44);
+    const hashArgs = getHashArgs()
+    const date = new Date(hashArgs.date)
+    const weekBefore = hashArgs.weekBefore ? parseInt(hashArgs.weekBefore) : 3
+    const weekAfter = hashArgs.weekAfter ? parseInt(hashArgs.weekAfter) : 44
+
+    const calendatInfo = createCalendarInfo(date, weekBefore, weekAfter);
     console.log(calendatInfo);
 
     createElement("div", {
